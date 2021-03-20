@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    $.ajax('http://xxx.com?login', function(data) { // 登录成功
+      login.trigger('loginSucc', data);
+    });
+
+    var header = (function() { // header 模块
+      login.listen('loginSucc', function(data) {
+        header.setAvatar(data.avator);
+      });
+      return {
+        setAvatar: function(data) {
+          console.log('设置 header 模块的头像');
+        }
+      };
+    })();
+
+    var nav = (function() {
+      login.listen('loginSucc', function(data) {
+        nav.setAvatar(data.avatar);
+      });
+      return {
+        setAvatar: function(avatar) {
+          console.log('设置 nav 模块的头像');
+        }
+      }
+    })();
+
+    var address = (function() {
+      login.listen('loginSucc', function(obj) {
+        address.refresh(obj);
+      });
+      return {
+        refresh: function(avatar) {
+          console.log('刷新收货地址列表');
+        }
+      }
+    })();
+</script>
