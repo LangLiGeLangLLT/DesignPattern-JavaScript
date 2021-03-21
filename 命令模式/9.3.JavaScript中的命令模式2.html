@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="button1">点击按钮 1</button>
+</body>
+</html>
+
+<script>
+    var button1 = document.getElementById('button1');
+
+    var setCommand = function(button, func) {
+      button.onclick = function() {
+        func();
+      }
+    };
+
+    var MenuBar = {
+      refresh: function() {
+        console.log('刷新菜单界面');
+      }
+    };
+
+    var RefreshMenuBarCommand = function(receiver) {
+      return function() {
+        receiver.refresh();
+      }
+    };
+
+    var refreshMenuBarCommand = RefreshMenuBarCommand(MenuBar);
+
+    setCommand(button1, refreshMenuBarCommand);
+</script>
