@@ -13,18 +13,27 @@
     var closeDoorCommand = {
       execute: function() {
         console.log('关门');
+      },
+      undo: function() {
+        console.log('开门');
       }
     };
 
     var openPcCommand = {
       execute: function() {
         console.log('开电脑');
+      },
+      undo: function() {
+        console.log('关电脑');
       }
     };
 
     var openQQComand = {
       execute: function() {
         console.log('登录 QQ');
+      },
+      undo: function() {
+        console.log('退出 QQ');
       }
     };
 
@@ -38,6 +47,11 @@
           for (var i = 0, command; command = this.commandsList[i++];) {
             command.execute();
           }
+        },
+        undo: function() {
+          for (var i = this.commandsList.length - 1, command; command = this.commandsList[i--];) {
+            command.undo();
+          }
         }
       }
     };
@@ -48,4 +62,5 @@
     macroCommand.add(openQQComand);
 
     macroCommand.execute();
+    macroCommand.undo();
 </script>
