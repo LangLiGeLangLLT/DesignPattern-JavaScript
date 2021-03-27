@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    用户名：<input type="text" id="username">
+    密码：<input type="text" id="password">
+    <input type="button" id="submitBtn" value="提交">
+</body>
+</html>
+
+<script>
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
+    var submitBtn = document.getElementById('submitBtn');
+
+    var formSubmit = function() {
+      if (username.value === '') {
+        return alert('用户名不能为空');
+      }
+      if (password.value === '') {
+        return alert('密码不能为空');
+      }
+
+      var param = {
+        username: username.value,
+        password: password.value
+      }
+      ajax('http://xxx.com/login', param); // ajax 具体实现略
+    }
+
+    submitBtn.onclick = function() {
+      formSubmit();
+    }
+</script>
+
+<script>
+    function ajax(url, param) {
+      console.log('发送登录请求，用户名：' + param.username + '，密码：' + param.password);
+    }
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="button">button</button>
+</body>
+</html>
+
+<script>
+    var _getElementById = document.getElementById;
+
+    document.getElementById = function() {
+      alert(1);
+      return _getElementById.apply(document, arguments);
+    }
+
+    var button = document.getElementById('button');
+</script>
