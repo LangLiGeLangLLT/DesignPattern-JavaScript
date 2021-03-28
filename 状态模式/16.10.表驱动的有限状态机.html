@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script src='state-machine.min.js'></script>
+
+<script>
+    var fsm = new StateMachine({
+      init: 'off',
+      transitions: [
+        { name: 'buttonWasPressed', from: 'off', to: 'on' },
+        { name: 'buttonWasPressed', from: 'on', to: 'off' }
+      ],
+      methods: {
+        onButtonWasPressed: function(event, from, to) {
+          console.log(arguments);
+        }
+      }
+    });
+
+    var button = document.createElement('button');
+    button.innerHTML = 'button';
+    document.body.appendChild(button);
+
+    button.onclick = function() {
+      fsm.buttonWasPressed();
+    }
+</script>
